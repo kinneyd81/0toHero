@@ -10,6 +10,8 @@
 //void print_usage(char *argv[]) { <-- orginally this?
 void print_usage() {
     printf("Usage: -n -f <file>\n");
+    printf("\t -a  - User string to add name,addr,hours . e.g \"Timmy, 123 Fake Street, 120\" .\n");
+    printf("\t -d  - User name to delete. e.g \"Timmy\"\n");
     printf("\t -f  - file to create.\n");
     printf("\t -h  - show help menu.\n");
     printf("\t -n  - create new database.\n");
@@ -19,6 +21,7 @@ void print_usage() {
 int main(int argc, char *argv[]) { 
     char *filepath = NULL;
     char *addstring = NULL;
+    char *deletestring = NULL;
     bool newfile = false ;
     bool list = false ;
     int dbfd = -1;
@@ -26,10 +29,13 @@ int main(int argc, char *argv[]) {
     struct dbheader_t *dbhdr = NULL;
     struct employee_t *employees = NULL;
 
-    while ((c = getopt(argc, argv, "a:hlnf:")) != -1) {
+    while ((c = getopt(argc, argv, "a:d:hlnf:")) != -1) {
         switch (c) {
             case 'a':
                     addstring = optarg;
+                    break;
+            case 'd':
+                    deletestring = optarg;
                     break;
             case 'n':
                     newfile = true;
@@ -92,6 +98,11 @@ int main(int argc, char *argv[]) {
         employees = realloc(employees, dbhdr->count*(sizeof(struct employee_t)));
         add_employee(dbhdr, employees, addstring);
         output_file(dbfd, dbhdr, employees);
+    }
+
+    if (deletestring) {
+        delete_employee(dbhdr, employees, deletestring);
+        //output_file(dbfd, dbhdr, employees);
     }
 
     if (list) {
