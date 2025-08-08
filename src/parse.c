@@ -21,21 +21,29 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
     }
     return;
 }
+int delete_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *deletestring) {
+    int i = 0;
+    for (; i < dbhdr->count; i++) {
+        if (!strcmp(deletestring, employees[i].name)) {
+            printf("Found user %d for deletion. %s\n", i, deletestring);
+        }
+    }
+    return STATUS_SUCCESS;
+}
 
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
-	printf("%s\n", addstring);
-
 	char *name = strtok(addstring, ",");
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
-	printf("%s %s %s\n", name, addr, hours);
 	
 	strncpy(employees[dbhdr->count-1].name, name, sizeof(employees[dbhdr->count-1].name));
 	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
 
 	employees[dbhdr->count-1].hours = atoi(hours);
+
+	printf("ADDED SUCCESSFULLY: %s %s %s\n", name, addr, hours);
 
 	return STATUS_SUCCESS;
 }
