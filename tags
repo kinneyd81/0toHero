@@ -1,0 +1,45 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/dave/src/Zero2HeroC/final-project-z2h-shell/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+$(TARGET)	Makefile	/^$(TARGET): $(OBJ)$/;"	t
+COMMON_H	include/common.h	/^#define COMMON_H$/;"	d
+FILE_H	include/file.h	/^#define FILE_H$/;"	d
+HEADER_MAGIC	include/parse.h	/^#define HEADER_MAGIC /;"	d
+OBJ	Makefile	/^OBJ = $(patsubst src\/%.c, obj\/%.o, $(SRC))$/;"	m
+PARSE_H	include/parse.h	/^#define PARSE_H$/;"	d
+SRC	Makefile	/^SRC = $(wildcard src\/*.c)$/;"	m
+STATUS_ERROR	include/common.h	/^#define STATUS_ERROR /;"	d
+STATUS_SUCCESS	include/common.h	/^#define STATUS_SUCCESS /;"	d
+TARGET	Makefile	/^TARGET = bin\/dbview$/;"	m
+This is a readme file	README.md	/^# This is a readme file$/;"	c
+add_employee	src/parse.c	/^int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {$/;"	f	typeref:typename:int
+address	include/parse.h	/^	char address[256];$/;"	m	struct:employee_t	typeref:typename:char[256]
+clean	Makefile	/^clean:$/;"	t
+count	include/parse.h	/^	unsigned short count;$/;"	m	struct:dbheader_t	typeref:typename:unsigned short
+create_db_file	src/file.c	/^int create_db_file(char *filename) {$/;"	f	typeref:typename:int
+create_db_header	src/parse.c	/^int create_db_header(int fd, struct dbheader_t **headerOut) {$/;"	f	typeref:typename:int
+dbheader_t	include/parse.h	/^struct dbheader_t {$/;"	s
+default	Makefile	/^default: $(TARGET)$/;"	t
+employee_t	include/parse.h	/^struct employee_t {$/;"	s
+filesize	include/parse.h	/^	unsigned int filesize;$/;"	m	struct:dbheader_t	typeref:typename:unsigned int
+hours	include/parse.h	/^	unsigned int hours;$/;"	m	struct:employee_t	typeref:typename:unsigned int
+list_employees	src/parse.c	/^void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {$/;"	f	typeref:typename:void
+magic	include/parse.h	/^	unsigned int magic;$/;"	m	struct:dbheader_t	typeref:typename:unsigned int
+main	src/main.c	/^int main(int argc, char *argv[]) { $/;"	f	typeref:typename:int
+name	include/parse.h	/^	char name[256];$/;"	m	struct:employee_t	typeref:typename:char[256]
+obj/%.o	Makefile	/^obj\/%.o : src\/%.c$/;"	t
+open_db_file	src/file.c	/^int open_db_file(char *filename) {$/;"	f	typeref:typename:int
+output_file	src/parse.c	/^int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {$/;"	f	typeref:typename:int
+print_usage	src/main.c	/^void print_usage() {$/;"	f	typeref:typename:void
+read_employees	src/parse.c	/^int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {$/;"	f	typeref:typename:int
+run	Makefile	/^run: clean default$/;"	t
+validate_db_header	src/parse.c	/^int validate_db_header(int fd, struct dbheader_t **headerOut) {$/;"	f	typeref:typename:int
+version	include/parse.h	/^	unsigned short version;$/;"	m	struct:dbheader_t	typeref:typename:unsigned short
