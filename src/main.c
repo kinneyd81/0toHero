@@ -7,7 +7,7 @@
 #include "file.h"
 #include "parse.h"
 
-//void print_usage(char *argv[]) { <-- orginally this?
+//void print_usage(char *argv[]) { //<-- orginally this?
 void print_usage() {
     printf("Usage: -n -f <file>\n");
     printf("\t -a  - User string to add name,addr,hours . e.g \"Timmy, 123 Fake Street, 120\" .\n");
@@ -101,8 +101,12 @@ int main(int argc, char *argv[]) {
     }
 
     if (deletestring) {
-        delete_employee(dbhdr, employees, deletestring);
-        //output_file(dbfd, dbhdr, employees);
+        if (delete_employee(dbhdr, employees, deletestring)) {
+            //dbhdr->count--;
+            ////employees = realloc(employees, dbhdr->count*(sizeof(struct employee_t)));
+            //output_file(dbfd, dbhdr, employees);
+            printf("Something found.\n");
+        }
     }
 
     if (list) {

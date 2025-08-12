@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/dave/src/Zero2HeroC/final-project-z2h-shell/	//
+!_TAG_PROC_CWD	/home/dave/src/0toHero/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -28,6 +28,7 @@ create_db_file	src/file.c	/^int create_db_file(char *filename) {$/;"	f	typeref:t
 create_db_header	src/parse.c	/^int create_db_header(int fd, struct dbheader_t **headerOut) {$/;"	f	typeref:typename:int
 dbheader_t	include/parse.h	/^struct dbheader_t {$/;"	s
 default	Makefile	/^default: $(TARGET)$/;"	t
+delete_employee	src/parse.c	/^int delete_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *deletestring) /;"	f	typeref:typename:int
 employee_t	include/parse.h	/^struct employee_t {$/;"	s
 filesize	include/parse.h	/^	unsigned int filesize;$/;"	m	struct:dbheader_t	typeref:typename:unsigned int
 hours	include/parse.h	/^	unsigned int hours;$/;"	m	struct:employee_t	typeref:typename:unsigned int
