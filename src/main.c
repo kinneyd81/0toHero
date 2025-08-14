@@ -18,11 +18,13 @@ void print_usage() {
     return;
 }
 
-int main(int argc, char *argv[]) { 
+int main(int argc, char *argv[]) {
     char *filepath = NULL;
     char *addstring = NULL;
     char *deletestring = NULL;
+    int employee_number = 0;
     bool newfile = false ;
+    bool do_delete = false ;
     bool list = false ;
     int dbfd = -1;
     int c;
@@ -35,7 +37,8 @@ int main(int argc, char *argv[]) {
                     addstring = optarg;
                     break;
             case 'd':
-                    deletestring = optarg;
+                    do_delete = true;
+                    employee_number = atoi(optarg);
                     break;
             case 'n':
                     newfile = true;
@@ -100,11 +103,8 @@ int main(int argc, char *argv[]) {
         output_file(dbfd, dbhdr, employees);
     }
 
-    if (deletestring) {
-        if (delete_employee(dbhdr, employees, deletestring)) {
-            //dbhdr->count--;
-            ////employees = realloc(employees, dbhdr->count*(sizeof(struct employee_t)));
-            //output_file(dbfd, dbhdr, employees);
+    if (do_delete) {
+        if (delete_employee(dbhdr, &employees, employee_number)) {
             printf("Something found.\n");
         }
     }

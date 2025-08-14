@@ -21,16 +21,21 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
     }
     return;
 }
-int delete_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *deletestring) {
-    int i = 0;
-    for (; i < dbhdr->count; i++) {
-        if (!strcmp(deletestring, employees[i].name)) {
-            printf("Found user %d for deletion. %s\n", i, deletestring);
-        }
-    }
-    return STATUS_SUCCESS;
-}
 
+// WIP - search for employee by name to delete
+//int delete_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *deletestring) {
+//    int i = 0;
+//
+//	int count = dbhdr->count;
+//	struct employee_t *new_employees = calloc(count, sizeof(struct employee_t));
+//
+//    for (; i < dbhdr->count; i++) {
+//        if (!strcmp(deletestring, employees[i].name)) {
+//            printf("Found user %d for deletion. %s\n", i, deletestring);
+//        }
+//    }
+//    return STATUS_SUCCESS;
+//}
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
 	char *name = strtok(addstring, ",");
@@ -48,6 +53,24 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 	return STATUS_SUCCESS;
 }
 
+int delete_employee(struct dbheader_t *dbhdr, struct employee_t **employeesOut, int employee_number) {
+	int count = dbhdr->count;
+
+	struct employee_t *employees = calloc(count, sizeof(struct employee_t));
+	printf("HERE\n");
+	printf("emp: %d", employee_number);
+
+    if (employees == NULL) {
+		printf("Malloc failed\n");
+		return STATUS_ERROR;
+	}
+    for (int i=0; i < count; i++) {
+        if (employee_number == i) {
+            printf("Found user %d for deletion. \n", i);
+        }
+    }
+}
+
 int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
 	if (fd < 0) {
 		printf("Got a bad FD from the user\n");
@@ -55,7 +78,6 @@ int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employe
 	}
 
 	int count = dbhdr->count;
-
 	struct employee_t *employees = calloc(count, sizeof(struct employee_t));
 	if (employees == NULL) {
 		printf("Malloc failed\n");
@@ -73,7 +95,6 @@ int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employe
 	return STATUS_SUCCESS;
 
 }
-
 
 int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {
     if (fd < 0) {
