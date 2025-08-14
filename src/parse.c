@@ -138,7 +138,7 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
 
     if (read(fd, header, sizeof(struct dbheader_t)) != sizeof(struct dbheader_t)) {
         perror("read");
-        free(header);
+        //free(header);
         return STATUS_ERROR;
     }
 
@@ -150,13 +150,13 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
 
     if ( header->version != 1) {
         printf("Improper header version.\n");
-        free(header);
+        //free(header);
         return -1;
     }
 
     if ( header->magic != HEADER_MAGIC) {
         printf("Improper header magic value.\n");
-        free(header);
+        //free(header);
         return -1;
     }
 
@@ -164,7 +164,7 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
     fstat(fd, &dbstat);
     if (header->filesize != dbstat.st_size) {
         printf("Corrupted database\n");
-        free(header);
+        //free(header);
         return -1;
     }
 
