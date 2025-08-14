@@ -53,23 +53,23 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 	return STATUS_SUCCESS;
 }
 
-int delete_employee(struct dbheader_t *dbhdr, struct employee_t **employeesOut, int employee_number) {
-	int count = dbhdr->count;
-
-	struct employee_t *employees = calloc(count, sizeof(struct employee_t));
-	printf("HERE\n");
-	printf("emp: %d", employee_number);
-
-    if (employees == NULL) {
-		printf("Malloc failed\n");
-		return STATUS_ERROR;
-	}
-    for (int i=0; i < count; i++) {
-        if (employee_number == i) {
-            printf("Found user %d for deletion. \n", i);
-        }
-    }
-}
+//int delete_employee(struct dbheader_t *dbhdr, struct employee_t **employeesOut, int employee_number) {
+//	int count = dbhdr->count;
+//
+//	struct employee_t *employees = calloc(count, sizeof(struct employee_t));
+//	printf("HERE\n");
+//	printf("emp: %d", employee_number);
+//
+//    if (employees == NULL) {
+//		printf("Malloc failed\n");
+//		return STATUS_ERROR;
+//	}
+//    for (int i=0; i < count; i++) {
+//        if (employee_number == i) {
+//            printf("Found user %d for deletion. \n", i);
+//        }
+//    }
+//}
 
 int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
 	if (fd < 0) {

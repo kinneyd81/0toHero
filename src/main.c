@@ -104,9 +104,10 @@ int main(int argc, char *argv[]) {
     }
 
     if (do_delete) {
-        if (delete_employee(dbhdr, &employees, employee_number)) {
-            printf("Something found.\n");
-        }
+        //if (delete_employee(dbhdr, &employees, employee_number)) {
+        //    printf("Something found.\n");
+        //}
+        printf("WIP\n");
     }
 
     if (list) {
