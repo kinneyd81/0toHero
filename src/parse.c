@@ -22,21 +22,6 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
     return;
 }
 
-// WIP - search for employee by name to delete
-//int delete_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *deletestring) {
-//    int i = 0;
-//
-//	int count = dbhdr->count;
-//	struct employee_t *new_employees = calloc(count, sizeof(struct employee_t));
-//
-//    for (; i < dbhdr->count; i++) {
-//        if (!strcmp(deletestring, employees[i].name)) {
-//            printf("Found user %d for deletion. %s\n", i, deletestring);
-//        }
-//    }
-//    return STATUS_SUCCESS;
-//}
-
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
 	char *name = strtok(addstring, ",");
 	char *addr = strtok(NULL, ",");
@@ -45,31 +30,12 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 	
 	strncpy(employees[dbhdr->count-1].name, name, sizeof(employees[dbhdr->count-1].name));
 	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
-
 	employees[dbhdr->count-1].hours = atoi(hours);
 
 	printf("ADDED SUCCESSFULLY: %s %s %s\n", name, addr, hours);
 
 	return STATUS_SUCCESS;
 }
-
-//int delete_employee(struct dbheader_t *dbhdr, struct employee_t **employeesOut, int employee_number) {
-//	int count = dbhdr->count;
-//
-//	struct employee_t *employees = calloc(count, sizeof(struct employee_t));
-//	printf("HERE\n");
-//	printf("emp: %d", employee_number);
-//
-//    if (employees == NULL) {
-//		printf("Malloc failed\n");
-//		return STATUS_ERROR;
-//	}
-//    for (int i=0; i < count; i++) {
-//        if (employee_number == i) {
-//            printf("Found user %d for deletion. \n", i);
-//        }
-//    }
-//}
 
 int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
 	if (fd < 0) {
@@ -171,7 +137,13 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
     *headerOut = header;
 }
 
-int create_db_header(struct dbheader_t **headerOut) {
+int create_db_header(int fd, struct dbheader_t **headerOut) {
+
+    if (fd == NULL) {
+        printf("passed bad fd\n");
+        return STATUS_ERROR;
+    }
+
     struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
     if (header == NULL) {
         printf("Malloc failed to create db header\n");

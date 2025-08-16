@@ -10,7 +10,6 @@
 
 
 int create_db_file(char *filename) {
-    // Try to open file, it should not exist
     int fd = open(filename, O_RDONLY);
     if (fd != -1) {
         close(fd); 
