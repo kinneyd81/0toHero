@@ -23,32 +23,20 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
 }
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
-	
-    if (addstring == NULL) {
-        printf("Malloc failed to create db header\n");
-        return STATUS_ERROR;
-    }
+
+    if (dbhdr == NULL) {
+		printf("Got bad dbhdr struct.\n");
+		return STATUS_ERROR;
+	}
+	if (employees == NULL) {
+		printf("Got bad employees struct.\n");
+		return STATUS_ERROR;
+	}
 
 	char *name = strtok(addstring, ",");
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
-    if (name == NULL) {
-        printf("Error adding employee.\n");
-        return STATUS_ERROR;
-    }
-
-    if (addr == NULL) {
-        printf("Error adding employee.\n");
-        return STATUS_ERROR;
-    }
-
-    if (hours == NULL) {
-        printf("Error adding employee.\n");
-        return STATUS_ERROR;
-    }
-
-	
 	strncpy(employees[dbhdr->count-1].name, name, sizeof(employees[dbhdr->count-1].name));
 	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
 	employees[dbhdr->count-1].hours = atoi(hours);
