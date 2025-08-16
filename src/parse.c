@@ -27,6 +27,21 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
+    if (name == NULL) {
+        printf("Error adding employee.\n");
+        return STATUS_ERROR;
+    }
+
+    if (addr == NULL) {
+        printf("Error adding employee.\n");
+        return STATUS_ERROR;
+    }
+
+    if (hours == NULL) {
+        printf("Error adding employee.\n");
+        return STATUS_ERROR;
+    }
+
 	
 	strncpy(employees[dbhdr->count-1].name, name, sizeof(employees[dbhdr->count-1].name));
 	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
