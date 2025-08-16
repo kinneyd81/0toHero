@@ -64,14 +64,14 @@ int main(int argc, char *argv[]) {
     if (newfile) {
         dbfd = create_db_file(filepath); // returns database filedescriptor
 
-        if (dbfd == -1) {
+        if (dbfd == STATUS_ERROR) {
             printf("Unable to create db file, %s\n");
             return STATUS_ERROR;
         }
 
-        if (create_db_header(&dbhdr) == STATUS_ERROR ) {
+        if (create_db_header(dbfd, &dbhdr) == STATUS_ERROR ) {
             printf("Failed to create db header\n");
-            return -1;
+            return STATUS_ERROR;
         }
         output_file(dbfd, dbhdr, employees);
 
