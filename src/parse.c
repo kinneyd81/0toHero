@@ -80,12 +80,13 @@ void output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees)
     lseek(fd, 0, SEEK_SET);
     write(fd, dbhdr, sizeof(struct dbheader_t));
 
-    // iterate over empoyees
+    // iterate over employees
     int i = 0;
     for (; i < realcount; i++) {
         employees[i].hours = htonl(employees[i].hours);
         write(fd, &employees[i], sizeof(struct employee_t));
     }
+    return;
 }	
 
 int validate_db_header(int fd, struct dbheader_t **headerOut) {
