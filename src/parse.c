@@ -135,6 +135,7 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
     }
 
     *headerOut = header;
+    return 0;
 }
 
 int create_db_header(int fd, struct dbheader_t **headerOut) {
