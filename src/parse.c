@@ -62,7 +62,7 @@ int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employe
 
 }
 
-void output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {
+int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {
     if (fd < 0) {
         printf("Got a bad fd from user.\n");
         return STATUS_ERROR;
@@ -86,7 +86,7 @@ void output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees)
         employees[i].hours = htonl(employees[i].hours);
         write(fd, &employees[i], sizeof(struct employee_t));
     }
-    return;
+    return STATUS_SUCCESS;
 }	
 
 int validate_db_header(int fd, struct dbheader_t **headerOut) {
