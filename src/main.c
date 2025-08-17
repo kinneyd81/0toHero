@@ -110,7 +110,7 @@ int main(int argc, char *argv[]) {
         list_employees(dbhdr, employees);
     }
 
-    printf("Newfile: %d\n", newfile);
-    printf("Filepath: %s\n", filepath);
+    //printf("Newfile: %d\n", newfile);
+    //printf("Filepath: %s\n", filepath);
     return 0;
 }
