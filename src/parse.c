@@ -24,10 +24,10 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
 
-    if (dbhdr == NULL) {
-		printf("Got bad dbhdr struct.\n");
-		return STATUS_ERROR;
-	}
+    //if (dbhdr == NULL) {
+	//	printf("Got bad dbhdr struct.\n");
+	//	return STATUS_ERROR;
+	//}
 	if (employees == NULL) {
 		printf("Got bad employees struct.\n");
 		return STATUS_ERROR;
