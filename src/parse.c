@@ -37,6 +37,11 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
+    if (name == NULL) {
+		printf("Got bad employees to add.\n");
+		return STATUS_ERROR;
+    }
+
     if (hours == NULL) {
 		printf("Got bad employees to add.\n");
 		return STATUS_ERROR;
