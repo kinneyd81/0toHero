@@ -56,6 +56,7 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
 	employees[dbhdr->count-1].hours = atoi(hours);
 
+    printf("%s,%s,%s\n", name, addr, hours);
     printf("%s %s %s\n", name, addr, hours);
 
 	return STATUS_SUCCESS;
