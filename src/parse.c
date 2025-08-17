@@ -33,6 +33,11 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 		return STATUS_ERROR;
 	}
 
+	if (addstring == NULL) {
+		printf("Got bad addstring struct.\n");
+		return STATUS_ERROR;
+	}
+
 	char *name = strtok(addstring, ",");
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
