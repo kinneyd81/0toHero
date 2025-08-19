@@ -58,11 +58,12 @@ int add_employee(struct dbheader_t **dbhdr, struct employee_t **employees, char 
 	temp[count-1].hours = atoi(hours);
 	dbhddr_temp->count = count;
 
-    printf("%s,%s,%s\n", name, addr, hours);
-    //printf("%s %s %s\n", name, addr, hours);
 
     *employees = temp;
     *dbhdr = dbhddr_temp;
+
+    printf("%s,%s,%s\n", name, addr, hours);
+    printf("%s %s %s\n", name, addr, hours);
 
 	return STATUS_SUCCESS;
 }
