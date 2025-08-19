@@ -27,6 +27,10 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
+    if (name == NULL) {
+        printf("Failed to set name\n");
+        return STATUS_ERROR;
+    }
 	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
 	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
 	temp[count-1].hours = atoi(hours);
