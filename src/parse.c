@@ -14,6 +14,11 @@
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
 
+    if (addstring == NULL) {
+        printf("Emplty addstring.\n");
+        return STATUS_ERROR;
+    }
+
 	int count = dbhdr->count;
 
 	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
@@ -31,6 +36,15 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
         printf("Failed to set name\n");
         return STATUS_ERROR;
     }
+    if (addr == NULL) {
+        printf("Failed to set hours\n");
+        return STATUS_ERROR;
+    }
+    if (hours == NULL) {
+        printf("Failed to set name\n");
+        return STATUS_ERROR;
+    }
+
 	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
 	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
 	temp[count-1].hours = atoi(hours);
