@@ -12,19 +12,22 @@
 
 
 
-int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
+int add_employee(struct dbheader_t **dbhdr, struct employee_t **employees, char *addstring) {
 
     if (addstring == NULL) {
         printf("Emplty addstring.\n");
         return STATUS_ERROR;
     }
 
-	int count = dbhdr->count;
+	struct dbheader_t *dbhddr_temp = *dbhdr;
+
+	int count = dbhddr_temp->count;
+	count++;
 
 	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
 
     if (temp == NULL) {
-        printf("ERROR NULL employee.\n");
+        printf("Unable to realloc.\n");
         return STATUS_ERROR;
     }
 
@@ -48,11 +51,13 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
 	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
 	temp[count-1].hours = atoi(hours);
+	dbhddr_temp->count = count;
 
     printf("%s,%s,%s\n", name, addr, hours);
     //printf("%s %s %s\n", name, addr, hours);
 
     *employees = temp;
+    *dbhdr = dbhddr_temp;
 
 	return STATUS_SUCCESS;
 }
