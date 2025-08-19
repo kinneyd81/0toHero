@@ -93,7 +93,6 @@ int main(int argc, char *argv[]) {
     }
 
     if (addstring) {
-        //dbhdr->count++;
         if (add_employee(&dbhdr, &employees, addstring)) {
             printf("Error adding employee.\n");
             return STATUS_ERROR;

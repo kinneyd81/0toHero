@@ -23,6 +23,11 @@ int add_employee(struct dbheader_t **dbhdr, struct employee_t **employees, char 
         printf("dbhddr is null.\n");
         return STATUS_ERROR;
     }
+    if (*employees == NULL) {
+        printf("employees is null.\n");
+        return STATUS_ERROR;
+    }
+
 
 	struct dbheader_t *dbhddr_temp = *dbhdr;
 
@@ -45,11 +50,11 @@ int add_employee(struct dbheader_t **dbhdr, struct employee_t **employees, char 
         return STATUS_ERROR;
     }
     if (addr == NULL) {
-        printf("Failed to set hours\n");
+        printf("Failed to set address\n");
         return STATUS_ERROR;
     }
     if (hours == NULL) {
-        printf("Failed to set name\n");
+        printf("Failed to set hours\n");
         return STATUS_ERROR;
     }
 
