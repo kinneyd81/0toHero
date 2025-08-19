@@ -94,12 +94,7 @@ int main(int argc, char *argv[]) {
 
     if (addstring) {
         dbhdr->count++;
-        employees = realloc(employees, dbhdr->count*(sizeof(struct employee_t)));
-        if (employees == NULL) {
-            printf("ERROR NULL employee.\n");
-            return STATUS_ERROR;
-        }
-        if (add_employee(dbhdr, employees, addstring)) {
+        if (add_employee(dbhdr, &employees, addstring)) {
             printf("Error adding employee.\n");
             return STATUS_ERROR;
         }

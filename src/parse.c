@@ -10,6 +10,35 @@
 #include "common.h"
 #include "parse.h"
 
+
+
+int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
+
+	int count = dbhdr->count;
+
+	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
+
+    if (temp == NULL) {
+        printf("ERROR NULL employee.\n");
+        return STATUS_ERROR;
+    }
+
+	char *name = strtok(addstring, ",");
+	char *addr = strtok(NULL, ",");
+	char *hours = strtok(NULL, ",");
+
+	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
+	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
+	temp[count-1].hours = atoi(hours);
+
+    printf("%s,%s,%s\n", name, addr, hours);
+    //printf("%s %s %s\n", name, addr, hours);
+
+    *employees = temp;
+
+	return STATUS_SUCCESS;
+}
+
 void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
 
     int i = 0;
@@ -20,46 +49,6 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
         printf("\tHours: %d\n", employees[i].hours);
     }
     return;
-}
-
-int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
-
-    if (dbhdr == NULL) {
-		printf("Got bad dbhdr struct.\n");
-		return STATUS_ERROR;
-	}
-	if (employees == NULL) {
-		printf("Got bad employees struct.\n");
-		return STATUS_ERROR;
-	}
-
-	if (addstring == NULL) {
-		printf("Got bad addstring struct.\n");
-		return STATUS_ERROR;
-	}
-
-	char *name = strtok(addstring, ",");
-	char *addr = strtok(NULL, ",");
-	char *hours = strtok(NULL, ",");
-
-    if (name == NULL) {
-		printf("Got bad employees to add.\n");
-		return STATUS_ERROR;
-    }
-
-    if (hours == NULL) {
-		printf("Got bad employees to add.\n");
-		return STATUS_ERROR;
-    }
-
-	strncpy(employees[dbhdr->count-1].name, name, sizeof(employees[dbhdr->count-1].name));
-	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
-	employees[dbhdr->count-1].hours = atoi(hours);
-
-    printf("%s,%s,%s\n", name, addr, hours);
-    printf("%s %s %s\n", name, addr, hours);
-
-	return STATUS_SUCCESS;
 }
 
 int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
