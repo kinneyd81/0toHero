@@ -51,7 +51,7 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 	return STATUS_SUCCESS;
 }
 
-void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
+int list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
     if (dbhdr == NULL) {
         return STATUS_ERROR;
     }
@@ -66,7 +66,7 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
         printf("\tAddress: %s\n", employees[i].address);
         printf("\tHours: %d\n", employees[i].hours);
     }
-    return;
+    return STATUS_SUCCESS;
 }
 
 int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
