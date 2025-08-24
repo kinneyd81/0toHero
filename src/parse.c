@@ -12,27 +12,9 @@
 
 
 
-int add_employee(struct dbheader_t **dbhdr, struct employee_t **employees, char *addstring) {
+int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
 
-    if (addstring == NULL) {
-        printf("Empty addstring.\n");
-        return STATUS_ERROR;
-    }
-
-    if (*dbhdr == NULL) {
-        printf("dbhddr is null.\n");
-        return STATUS_ERROR;
-    }
-    if (*employees == NULL) {
-        printf("employees is null.\n");
-        return STATUS_ERROR;
-    }
-
-
-	struct dbheader_t *dbhddr_temp = *dbhdr;
-
-	int count = dbhddr_temp->count;
-	count++;
+	int count = dbhdr->count;
 
 	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
 
@@ -45,27 +27,12 @@ int add_employee(struct dbheader_t **dbhdr, struct employee_t **employees, char 
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
-    if (name == NULL) {
-        printf("Failed to set name\n");
-        return STATUS_ERROR;
-    }
-    if (addr == NULL) {
-        printf("Failed to set address\n");
-        return STATUS_ERROR;
-    }
-    if (hours == NULL) {
-        printf("Failed to set hours\n");
-        return STATUS_ERROR;
-    }
-
 	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
 	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
 	temp[count-1].hours = atoi(hours);
-	dbhddr_temp->count = count;
 
 
     *employees = temp;
-    *dbhdr = dbhddr_temp;
 
     printf("%s,%s,%s\n", name, addr, hours);
     printf("%s %s %s\n", name, addr, hours);
