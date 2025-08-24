@@ -11,6 +11,9 @@
 #include "parse.h"
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
+    if (employees == NULL) {
+        return STATUS_ERROR;
+    }
 
 	dbhdr->count++;
 	struct employee_t *temp = realloc(*employees, dbhdr->count * sizeof(struct employee_t));
