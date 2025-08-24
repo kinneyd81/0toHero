@@ -12,8 +12,8 @@
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
 
-	int count = dbhdr->count;
-	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
+	dbhdr->count++;
+	struct employee_t *temp = realloc(*employees, dbhdr->count * sizeof(struct employee_t));
 
     if (temp == NULL) {
         printf("Unable to realloc.\n");
@@ -24,9 +24,9 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
-	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
-	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
-	temp[count-1].hours = atoi(hours);
+	strncpy(temp[dbhdr->count-1].name, name, sizeof(temp[dbhdr->count-1].name));
+	strncpy(temp[dbhdr->count-1].address, addr, sizeof(temp[dbhdr->count-1].address));
+	temp[dbhdr->count-1].hours = atoi(hours);
 
     *employees = temp;
 
