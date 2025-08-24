@@ -11,6 +11,9 @@
 #include "parse.h"
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
+    if (dbhdr == NULL) {
+        return STATUS_ERROR;
+    }
     if (employees == NULL) {
         return STATUS_ERROR;
     }
