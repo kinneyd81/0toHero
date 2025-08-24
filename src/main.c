@@ -102,6 +102,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (list) {
+        return 0;
         list_employees(dbhdr, employees);
     }
 

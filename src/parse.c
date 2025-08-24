@@ -10,11 +10,10 @@
 #include "common.h"
 #include "parse.h"
 
-
-
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
 
 	int count = dbhdr->count;
+	printf("COUNT %d\n", count);
 
 	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
 
@@ -30,7 +29,6 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 	strncpy(temp[count-1].name, name, sizeof(temp[count-1].name));
 	strncpy(temp[count-1].address, addr, sizeof(temp[count-1].address));
 	temp[count-1].hours = atoi(hours);
-
 
     *employees = temp;
 
