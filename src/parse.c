@@ -13,8 +13,6 @@
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
 
 	int count = dbhdr->count;
-	printf("COUNT %d\n", count);
-
 	struct employee_t *temp = realloc(*employees, count * sizeof(struct employee_t));
 
     if (temp == NULL) {
