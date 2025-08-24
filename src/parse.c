@@ -30,6 +30,15 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 	char *addr = strtok(NULL, ",");
 	char *hours = strtok(NULL, ",");
 
+    if (name == NULL) {
+        return STATUS_ERROR;
+    }
+    if (addr == NULL) {
+        return STATUS_ERROR;
+    }
+    if (hours == NULL) {
+        return STATUS_ERROR;
+    }
 	strncpy(temp[dbhdr->count-1].name, name, sizeof(temp[dbhdr->count-1].name));
 	strncpy(temp[dbhdr->count-1].address, addr, sizeof(temp[dbhdr->count-1].address));
 	temp[dbhdr->count-1].hours = atoi(hours);
